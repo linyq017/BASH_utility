@@ -1,4 +1,13 @@
 %%bash
-cd # to the folder where subfolder count will be conducted
-for dir in */; do
-    echo "Number of files in $dir: $(find "$dir" -maxdepth 1 -type f | wc -l)" # find command searches within the subfolder using -maxdepth 1 to avoid searching recursively into sub-subfolders. -type f option specifies that only files should be counted
+directory="/workspace/Lidardata01/Lin/Data/Indices/tiles"
+ 
+for dir in "$directory"/*/; do
+    # Use find to count files in the subdirectory at depth 1
+    file_count=$(find "$dir" -maxdepth 1 -type f | wc -l)
+    
+    # Extract the subdirectory name
+    subfolder_name=$(basename "$dir")
+    
+    # Print the result
+    echo "Number of files in $subfolder_name: $file_count"
+done
